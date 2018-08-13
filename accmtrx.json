@@ -8,7 +8,7 @@
             {"Feature":"P&T", "Function":"Bill Payment","HRT":false,"OTP":"Session","CMAMTCheck":true},
             {"Feature":"P&T", "Function":"Citi Global Transfer","HRT":false,"OTP":"Txn","CMAMTCheck":true},
             {"Feature":"P&T", "Function":"Transfer Overseas","HRT":false,"OTP":"Txn","CMAMTCheck":true},
-            {"Feature":"P&T", "Function":"Transfer to Peer/Proxy","HRT":false,"OTP":"Session","CMAMTCheck":true},
+            {"Feature":"P&T", "Function":"Transfer to Peer/Proxy","HRT":false,"OTP":"Session","CMAMTCheck":true}
         ]
     }
 }
