@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Bootstrap Theme Company</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+		.card-header {
+			color: #000000 !important;
+			background-color: #f6f6f6 !important;
+			padding: 5px;
+			border-bottom: 1px solid transparent;
+			border-top-left-radius: 0px;
+			border-top-right-radius: 0px;
+			border-bottom-left-radius: 0px;
+			border-bottom-right-radius: 0px;
+		}
+
+		.dropdown-item {
+			display: block;
+			width: 100%;
+			padding: .25rem 1.5rem;
+			clear: both;
+			font-weight: 400;
+			color: #212529;
+			text-align: inherit;
+			white-space: nowrap;
+			background-color: transparent;
+			border: 0;
+		}
+	</style>
+	<script>
+		var items;
+
+		$.getJSON("scrn.json", function (data) {
+			//var items = [];
+			items = data;
+			//alert(items.screens[1].img);
+
+			$.each(items.screens, function (ini, it) {
+				//alert("index:" + ini + " Val:" + it.scrID);
+			});
+
+			//alert(JSON.stringify(items));
+		  /*
+			$( "<ul/>", {
+		    "class": "my-new-list",
+		    html: items.join( "" )
+		  }).appendTo( "body" );
+			*/
+		});
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="card">
+					<img class="card-img-top" src="temp.png" alt="Card image cap" style="height: 550px;width: 300px;">
+					<h5 class="card-header">Featured</h5>
+					<div class="card-body">
+						<h5 class="card-title">Special title treatment</h5>
+						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card">
+					<img class="card-img-top" src="temp.png" alt="Card image cap" style="height: 550px;width: 300px;">
+					<h5 class="card-header">Featured</h5>
+					<div class="card-body">
+						<h5 class="card-title">Special title treatment</h5>
+						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card">
+					<img class="card-img-top" src="temp.png" alt="Card image cap" style="height: 550px;width: 300px;">
+					<h5 class="card-header">Featured</h5>
+					<div class="card-body">
+						<h5 class="card-title">Special title treatment</h5>
+						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card">
+					<img class="card-img-top" src="temp.png" alt="Card image cap" style="height: 550px;width: 300px;">
+					<h5 class="card-header">Featured</h5>
+					<div class="card-body">
+						<h5 class="card-title">Special title treatment</h5>
+						<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+							 aria-expanded="false">
+								Dropdown button
+							</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+								<a class="dropdown-item" href="#">Action</a>
+								<a class="dropdown-item" href="#">Another action</a>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</div>
+						</div>
+
+						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<span>some footer</span>
+			<ul></ul>
+		</div>
+	</div>
+</body>
+
+</html>
