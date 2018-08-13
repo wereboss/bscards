@@ -1,0 +1,21 @@
+.card-screen {
+    width: 300px;
+    height: 700px;
+}
+
+.card-footer-row {
+    width: 100%;
+}
+
+.arrow {
+    text-align: center;
+    font-size: 80px;
+}
+.card-div {
+    height: 420px;
+    display: block;
+}
+.card-img {
+    height: 100%;
+    width: 100%;
+}

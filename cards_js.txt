@@ -1,0 +1,239 @@
+// Global Vars
+var scrJSONArr = [];
+var mainlist = [];
+var mainInd ;
+
+/* Display the screens corresponding to passed list of screen ID, no return value*/
+ function displayScreens(listScrID,startID,scrArr){
+    if(startID < 0) {
+        sID = 0;
+    }
+    else {
+        sID = listScrID.indexOf(startID);
+    }
+    cntList = 0;
+    //alert("displayScreens listScrID: " + JSON.stringify(listScrID));
+    //alert("displayScreens sID: " + sID);
+    //alert("displayScreens scrArr len: " + scrArr.length);
+    
+    //alert("inside while");
+
+    $(".card-screen").each(function(){
+        if((sID < listScrID.length) && (cntList < 3)){
+            //alert("listScrID:" + JSON.stringify(listScrID));
+            scrObj = scrArr.find(function(value, index, array){
+                //alert("Checking " + value.scrID + "with list sID:" + sID);
+                return value.scrID == listScrID[sID];
+            });
+            //alert("displayScreens scrObj: " + JSON.stringify(scrObj));
+            $(this).find("img.card-img").first().attr("src",scrObj.img);
+            $(this).children("h3.card-header").first().text("Screen " + scrObj.scrID);
+            $(this).children("div.card-body").first().text("Screen Description for Screen " + scrObj.scrID);
+            //alert("NextScr Len:" + scrObj.nextScr.length);
+            footerObj = $(this).children("div.card-footer").first();
+            footerObj.text("");
+            footerObj.innerHTML = "";
+            newHTML = "";
+            newHTML += '<div class="dropdown">';
+            newHTML += '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Possible Next Screens</button>';
+            newHTML += '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
+
+            if(scrObj.nextScr.length > 1){
+                //alert("inside scrObj.nextScr.length")
+                //nextArr = scrObj.nextScr
+                //priorlist = mainlist.slice(0,mainlist.indexOf(listScrID[sID])+1); 
+                $.each(scrObj.nextScr,function(ini,it){
+                    //priorlist.push(it);
+                    //footerObj.append('<a href="#" onclick="changeList(' + listScrID[sID] + ',' + it + ')">' + it + "</a><br>");
+                    newHTML += '<a class="dropdown-item" href="#" onclick="changeList(' + listScrID[sID] + ',' + it + ')">Screen ' + it + '</a>';
+                });
+                newHTML += ' </div> </div>';
+                //alert(newHTML);
+                footerObj.html(newHTML);
+                //footerObj.innerHTML = newHTML; 
+            }
+            sID += 1;
+            cntList += 1; 
+        }
+        else {
+            //alert("inside else");
+            if(cntList<3){
+                //alert("Inside cntList>3");
+                $(this).children("img.card-img-top").first().attr("src","temp.png");
+                $(this).children("h3.card-header").first().text("");
+                $(this).children("div.card-body").first().text("");
+                $(this).children("div.card-footer").first().text("");
+            }
+        }
+    });
+
+    
+ }
+
+
+function getNextScrn(lastScrID,scrArr){
+    lastScr = scrArr.find(function(value, index, array){
+        return value.scrID >= lastScrID;
+    });
+    if(lastScrID < 0){
+        return lastScr.scrID;    
+    }
+    else {
+        return lastScr.nextScr[0];
+    }
+    
+}
+
+ /*Parse screen list to form a connected list of screens, return back screen ID list */
+function incrScreenList(scrArr){
+    //alert("scrnIDlist len " + scrnIDlist.length);
+    //alert("scrArr len " + scrArr.length);
+    /*
+    if(scrnIDlist.length>0){
+        lastScrID = scrnIDlist[scrnIDlist.length - 1];
+    }
+    else {
+        lastScrID = -1;
+    }
+    if(scrnIDlist.length < 3){  
+        iniLength = 3;
+    }
+    else {
+        iniLength = scrnIDlist.length + 1;
+    }
+    */
+   if(mainlist){
+       if(mainlist.length < 1){
+            finalLength = 3;
+            lastScrID = -1;
+       }
+       else {
+            if(mainInd){
+                finalLength = mainlist.indexOf(mainInd) + 3;
+                lastScrID = mainlist[mainlist.length - 1];
+                //alert("finalLen:" + finalLength + " lastScrID:" + lastScrID);
+            }
+       }
+   }
+    while(mainlist.length < finalLength) {
+        //alert("Inside While " + scrnIDlist.length);
+        nScr = getNextScrn(lastScrID,scrArr);
+        if(nScr) {
+            //scrnIDlist.push(nScr);
+            mainlist.push(nScr);
+            lastScrID = mainlist[mainlist.length - 1];
+            
+            if(mainlist.length == 1){
+                mainInd = mainlist[0];
+                //alert("length 1:" + mainInd);
+            }
+            
+        }
+        else {
+            break;
+        }
+        
+    }
+    //alert("Ready scrnIDlist " + JSON.stringify(scrnIDlist));
+    return mainlist;
+}
+
+function checkG() {
+    //alert("Arr: " + JSON.stringify(scrJSONArr));
+    alert("G List: " + JSON.stringify(mainlist));
+    alert("MainInd: " + mainInd);
+}
+
+function callNext(){
+    if(mainlist.length>2){
+        if((mainlist.length - mainlist.indexOf(mainInd) - 1) < 3){
+            //nScr = getNextScrn(mainlist[mainlist.indexOf(mainInd)+2],scrJSONArr);
+            //alert("inside add");
+            nScr = getNextScrn(mainlist[mainlist.length - 1],scrJSONArr);
+            if(nScr){
+                mainlist.push(nScr);
+                mainInd = mainlist[mainlist.indexOf(mainInd) + 1];
+                displayScreens(mainlist,mainInd,scrJSONArr);
+                //alert("next");
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            mainInd = mainlist[mainlist.indexOf(mainInd) + 1];
+            displayScreens(mainlist,mainInd,scrJSONArr);
+            //alert("next");
+            return true;            
+        }
+        
+    }
+    else {
+        return false;
+    }
+    
+}
+
+function callPrev(){
+    if(mainlist.indexOf(mainInd)>0){
+        mainInd = mainlist[mainlist.indexOf(mainInd) - 1];
+        displayScreens(mainlist,mainInd,scrJSONArr);
+        //alert("prev");
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function changeList(currInd,nextInd){
+    //checkG();
+    mainlist = mainlist.slice(0,mainlist.indexOf(currInd)+1);
+    //alert("Sliced List: " + JSON.stringify(mainlist));
+    mainlist.push(nextInd);
+    //alert("Pushed List: " + JSON.stringify(mainlist));
+    if((mainlist.indexOf(currInd) - mainlist.indexOf(mainInd)) > 1){
+        //alert("changing mainInd");
+        mainInd = mainlist[mainlist.indexOf(mainInd) + 1];
+    }
+    //checkG();
+    if(mainInd == currInd){
+        incrScreenList(scrJSONArr);
+    }
+    displayScreens(mainlist,mainInd,scrJSONArr);
+    //checkG();
+}
+
+$(function(){
+    $(".arrow span").click(function(){
+        //alert($(this).attr("class"));
+        //checkG();
+        if($(this).hasClass("fa-chevron-left")){
+            if(! callPrev()){
+                //alert("First");
+            }
+        }
+        else {
+            if(! callNext()){
+                //alert("End");
+            }
+        }
+        //checkG();
+    });
+    $.getJSON( "scrn.json", function( data ) {
+        //var items = [];
+        //scrJSONArr = data.screens;
+        
+        $.each(data.screens, function(ini,it) {
+            scrJSONArr.push(it);
+        });
+        
+        //alert("StringiFy " + JSON.stringify(scrJSONArr));
+        //alert("scrJSONArr len " + scrJSONArr.length);
+        displayScreens(incrScreenList(scrJSONArr),-1,scrJSONArr);
+        //incrScreenList([],scrJSONArr);
+        //checkG();
+    });
+    
+ }); 
