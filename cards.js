@@ -236,6 +236,8 @@ $(function() {
     }
     checkG();
   });
+  
+  
   $.getJSON("scrn.json", function(data) {
     //var items = [];
     //scrJSONArr = data.screens;

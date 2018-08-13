@@ -1,12 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Access Matrix</title>
+    <!-- JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap and utilities -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- Own Style & Scripts-->
+    <link rel="stylesheet" href="AccMat.css">
+    <script src="jsonfunc.js"></script>
+    <script src="AccMat.js"></script>
 </head>
+
 <body>
-    
+    <div class="container">
+        <div id="toolbar">
+        </div>
+        <table id="AMtable" data-toolbar="#toolbar" data-search="true">
+            <thead>
+                <tr>
+                    <th data-field="Feature">Feature</th>
+                    <th data-field="Function">Function</th>
+                    <th data-field="HRT">HRT</th>
+                    <th data-field="OTP">OTP</th>
+                    <th data-field="CMAMTCheck">CMAMTCheck</th>
+                    <th data-field="Tags">Tags</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </body>
+
 </html>
