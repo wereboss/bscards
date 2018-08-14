@@ -7,7 +7,9 @@
                 "HRT": false,
                 "OTP": "Session",
                 "CMAMTCheck": true,
-                "Tags": "APAC,SG"
+                "Tags": "APAC,SG",
+                "Desc":"Sample Pay Card Desc",
+                "OverrideCMAMT": true
             },
             {
                 "Feature": "P&T",
@@ -15,7 +17,9 @@
                 "HRT": false,
                 "OTP": "Session",
                 "CMAMTCheck": true,
-                "Tags": "APAC,SG"
+                "Tags": "APAC,SG",
+                "Desc":"Sample Transfer to own Accounts Desc",
+                "OverrideCMAMT": true
             },
             {
                 "Feature": "P&T",
@@ -23,7 +27,9 @@
                 "HRT": false,
                 "OTP": "Session",
                 "CMAMTCheck": true,
-                "Tags": "APAC,SG"
+                "Tags": "APAC,SG",
+                "Desc":"Sample Transfer to Domestic Citi Desc",
+                "OverrideCMAMT": false
             },
             {
                 "Feature": "P&T",
@@ -31,7 +37,9 @@
                 "HRT": false,
                 "OTP": "Session",
                 "CMAMTCheck": true,
-                "Tags": "APAC,SG"
+                "Tags": "APAC,SG",
+                "Desc":"Sample Transfer to Domestic Desc",
+                "OverrideCMAMT": false
             },
             {
                 "Feature": "P&T",
@@ -39,7 +47,9 @@
                 "HRT": false,
                 "OTP": "Session",
                 "CMAMTCheck": true,
-                "Tags": "APAC,SG"
+                "Tags": "APAC,SG",
+                "Desc":"Sample Bill Payment Desc",
+                "OverrideCMAMT": false
             },
             {
                 "Feature": "P&T",
@@ -47,23 +57,29 @@
                 "HRT": false,
                 "OTP": "Txn",
                 "CMAMTCheck": true,
-                "Tags": "APAC,SG,MY"
+                "Tags": "APAC,SG,MY",
+                "Desc":"Sample Citi Global Transfer Desc",
+                "OverrideCMAMT": false
             },
             {
                 "Feature": "P&T",
                 "Function": "Transfer Overseas",
-                "HRT": false,
+                "HRT": true,
                 "OTP": "Txn",
                 "CMAMTCheck": true,
-                "Tags": "APAC,SG"
+                "Tags": "APAC,SG",
+                "Desc":"Sample Transfer Overseas Desc",
+                "OverrideCMAMT": false
             },
             {
                 "Feature": "P&T",
                 "Function": "Transfer to Peer/Proxy",
                 "HRT": false,
                 "OTP": "Session",
-                "CMAMTCheck": true,
-                "Tags": "APAC,SG,MY"
+                "CMAMTCheck": false,
+                "Tags": "APAC,SG,MY",
+                "Desc":"Sample Transfer to Peer/Proxy Desc",
+                "OverrideCMAMT": true
             }
         ]
     }

@@ -13,30 +13,40 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
     <!-- Own Style & Scripts-->
     <link rel="stylesheet" href="AccMat.css">
+    <!--
+    <link rel="stylesheet" href="../../../fonts/glyphicons.css">
+    -->
     <script src="jsonfunc.js"></script>
     <script src="AccMat.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <div id="toolbar">
+        <div class="row">
+            <div class="col-sm-11">
+                <div id="toolbar">
+                </div>
+                <div id="infoalert" class="alert alert-light" role="alert"></div>
+            </div>
+            <div class="col-sm-1">
+                <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Country
+                    </button>
+                    <div id="CountryDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" onclick="filterCountry('All')">All</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <table id="AMtable" data-toolbar="#toolbar" data-search="true">
-            <thead>
-                <tr>
-                    <th data-field="Feature">Feature</th>
-                    <th data-field="Function">Function</th>
-                    <th data-field="HRT">HRT</th>
-                    <th data-field="OTP">OTP</th>
-                    <th data-field="CMAMTCheck">CMAMTCheck</th>
-                    <th data-field="Tags">Tags</th>
-                </tr>
-            </thead>
+        <table id="AMtable" data-toolbar="#toolbar" data-search="true" data-detail-view="true">
         </table>
     </div>
 </body>

@@ -1,2 +1,15 @@
 /* Style for AccessMatrix.html
 */
+.logogrey {
+    color: #e6dfdffd;
+}
+.logogreen {
+    color: #70b655e0;
+}
+.detail-view {
+    background-color: #f0f0f5;
+    font-size: 12px;
+}
+.bnpgrey {
+    background-color: #4f5694;
+}
