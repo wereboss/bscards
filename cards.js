@@ -56,7 +56,13 @@ function displayScreens(listScrID, startID, scrArr) {
       newHTML +=
         '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
       tmparr2 = [];
-      tmparr2 = scrObj.NextScr.split(",");
+      if(scrObj.NextScr) {
+        tmparr2 = scrObj.NextScr.split(",");
+      }
+      else {
+        tmparr2 = [""];
+      }
+      
       if (tmparr2.length > 1) {
         //console.log("inside scrObj.nextScr.length")
         //nextArr = scrObj.nextScr
@@ -113,8 +119,15 @@ function getNextScrn(lastScrID, scrArr) {
   if (lastScrID < 0) {
     return lastScr.Id;
   } else {
-    tmparr = lastScr.NextScr.split(","); 
-    return parseInt(tmparr[0]);
+    if(lastScr.NextScr){
+      tmparr = lastScr.NextScr.split(","); 
+      return parseInt(tmparr[0]);
+    }
+    else {
+      return null;
+    }
+    
+    
   }
 }
 
