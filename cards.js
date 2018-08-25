@@ -21,22 +21,28 @@ function displayScreens(listScrID, startID, scrArr) {
     if (sID < listScrID.length && cntList < 3) {
       //console.log("listScrID:" + JSON.stringify(listScrID));
       scrObj = scrArr.find(function(value, index, array) {
-        //console.log("Checking " + value.scrID + "with list sID:" + sID);
-        return value.scrID == listScrID[sID];
+        //console.log("Checking " + value.Id + "with list sID:" + sID);
+        return value.Id == listScrID[sID];
       });
       //console.log("displayScreens scrObj: " + JSON.stringify(scrObj));
+      if(scrObj.Img.length > 0){
+        tmpimg = scrObj.Img.split(",");
+      }
+      else {
+        tmpimg = [""];
+      }
       $(this)
         .find("img.card-img")
         .first()
-        .attr("src", scrObj.img);
+        .attr("src", tmpimg[0]);
       $(this)
         .children("h3.card-header")
         .first()
-        .text("Screen " + scrObj.scrID);
+        .text("Screen " + scrObj.Id);
       $(this)
         .children("div.card-body")
         .first()
-        .text("Screen Description for Screen " + scrObj.scrID);
+        .text(scrObj.Desc);
       //console.log("NextScr Len:" + scrObj.nextScr.length);
       footerObj = $(this)
         .children("div.card-footer")
@@ -49,12 +55,13 @@ function displayScreens(listScrID, startID, scrArr) {
         '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Possible Next Screens</button>';
       newHTML +=
         '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
-
-      if (scrObj.nextScr.length > 1) {
+      tmparr2 = [];
+      tmparr2 = scrObj.NextScr.split(",");
+      if (tmparr2.length > 1) {
         //console.log("inside scrObj.nextScr.length")
         //nextArr = scrObj.nextScr
         //priorlist = mainlist.slice(0,mainlist.indexOf(listScrID[sID])+1);
-        $.each(scrObj.nextScr, function(ini, it) {
+        $.each(tmparr2, function(ini, it) {
           //priorlist.push(it);
           //footerObj.append('<a href="#" onclick="changeList(' + listScrID[sID] + ',' + it + ')">' + it + "</a><br>");
           newHTML +=
@@ -99,13 +106,15 @@ function displayScreens(listScrID, startID, scrArr) {
 }
 
 function getNextScrn(lastScrID, scrArr) {
+  var tmparr = [];
   lastScr = scrArr.find(function(value, index, array) {
-    return value.scrID >= lastScrID;
+    return value.Id >= lastScrID;
   });
   if (lastScrID < 0) {
-    return lastScr.scrID;
+    return lastScr.Id;
   } else {
-    return lastScr.nextScr[0];
+    tmparr = lastScr.NextScr.split(","); 
+    return parseInt(tmparr[0]);
   }
 }
 
@@ -203,16 +212,17 @@ function callPrev() {
 }
 
 function changeList(currInd, nextInd) {
-  //checkG();
+  console.log("changeList");
+  checkG();
   mainlist = mainlist.slice(0, mainlist.indexOf(currInd) + 1);
-  //console.log("Sliced List: " + JSON.stringify(mainlist));
+  console.log("Sliced List: " + JSON.stringify(mainlist));
   mainlist.push(nextInd);
-  //console.log("Pushed List: " + JSON.stringify(mainlist));
+  console.log("Pushed List: " + JSON.stringify(mainlist));
   if (mainlist.indexOf(currInd) - mainlist.indexOf(mainInd) > 1) {
-    //console.log("changing mainInd");
+    console.log("changing mainInd");
     mainInd = mainlist[mainlist.indexOf(mainInd) + 1];
   }
-  //checkG();
+  checkG();
   if (mainInd == currInd) {
     incrScreenList(scrJSONArr);
   }
@@ -238,7 +248,7 @@ $(function() {
   });
   
   
-  $.getJSON("scrn.json", function(data) {
+  $.getJSON("scrn2.json", function(data) {
     //var items = [];
     //scrJSONArr = data.screens;
 
@@ -246,7 +256,7 @@ $(function() {
       scrJSONArr.push(it);
     });
 
-    //console.log("StringiFy " + JSON.stringify(scrJSONArr));
+    console.log("StringiFy " + JSON.stringify(scrJSONArr));
     //console.log("scrJSONArr len " + scrJSONArr.length);
     displayScreens(incrScreenList(scrJSONArr), -1, scrJSONArr);
     //incrScreenList([],scrJSONArr);
