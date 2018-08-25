@@ -149,7 +149,7 @@ function OTPFormatter(value, row, index) {
                 ].join('');
                 */
         if (!row.OverrideCMAMT) {
-            strOvr = '<button type="button" class="btn btn-warning" data-toggle="popover" data-placement="top" data-content="CMAMT Interdicts are prioritised"><i class="fas fa-user-shield"></i></button>';
+            strOvr = '<button type="button" class="btn btn-secondary" data-toggle="popover" data-placement="top" data-content="CMAMT Interdicts are prioritised"><i class="fas fa-user-shield logoorange"></i></button>';
         }
         else {
             strOvr = '<button type="button" class="btn btn-secondary" data-toggle="popover" data-placement="top" data-content="CMAMT Interdicts are ignored if already interdicted previously in the same session"><i class="fas fa-user-shield logogrey"></i></button>';
@@ -163,7 +163,7 @@ function OTPFormatter(value, row, index) {
     }
     else {
         return [
-            '<button type="button" class="btn btn-secondary btn-sm bnpgrey" data-toggle="popover" data-placement="top" data-content="OTP is triggered for every transaction">Transaction</button>'
+            '<button type="button" class="btn btn-secondary btn-sm" data-toggle="popover" data-placement="top" data-content="OTP is triggered for every transaction">Transaction</button>'
         ].join('');
     }
 }
