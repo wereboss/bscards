@@ -38,11 +38,19 @@ function displayScreens(listScrID, startID, scrArr) {
       $(this)
         .children("h3.card-header")
         .first()
-        .text("Screen " + scrObj.Id);
+        .text("(" + scrObj.Id + ")" + scrObj.ScreenName);
       $(this)
         .children("div.card-body")
         .first()
         .text(scrObj.Desc);
+      $(this)
+      .find("h5.modal-title")
+      .first()
+      .text(scrObj.ScreenName);
+      $(this)
+      .find("img.Mimg")
+      .first()
+      .attr("src", tmpimg[0]);
       //console.log("NextScr Len:" + scrObj.nextScr.length);
       footerObj = $(this)
         .children("div.card-footer")
