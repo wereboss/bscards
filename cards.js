@@ -68,6 +68,10 @@ function displayScreens(listScrID, startID, scrArr) {
         //nextArr = scrObj.nextScr
         //priorlist = mainlist.slice(0,mainlist.indexOf(listScrID[sID])+1);
         $.each(tmparr2, function(ini, it) {
+          tmpsObj = scrArr.find(function(value, index, array) {
+            //console.log("Checking " + value.Id + "with list sID:" + sID);
+            return value.Id == it;
+          });
           //priorlist.push(it);
           //footerObj.append('<a href="#" onclick="changeList(' + listScrID[sID] + ',' + it + ')">' + it + "</a><br>");
           newHTML +=
@@ -75,9 +79,9 @@ function displayScreens(listScrID, startID, scrArr) {
             listScrID[sID] +
             "," +
             it +
-            ')">Screen ' +
+            ')">(' +
             it +
-            "</a>";
+            ")" + tmpsObj.ScreenName + "</a>";
         });
         newHTML += " </div> </div>";
         //console.log(newHTML);
@@ -88,10 +92,10 @@ function displayScreens(listScrID, startID, scrArr) {
       cntList += 1;
     } else {
       //console.log("inside else");
-      if (cntList < 3) {
+      if (cntList <= 2) {
         //console.log("Inside cntList>3");
         $(this)
-          .children("img.card-img-top")
+          .find("img.card-img")
           .first()
           .attr("src", "temp.png");
         $(this)
