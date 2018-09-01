@@ -25,10 +25,9 @@ function displayScreens(listScrID, startID, scrArr) {
         return value.Id == listScrID[sID];
       });
       //console.log("displayScreens scrObj: " + JSON.stringify(scrObj));
-      if(scrObj.Img.length > 0){
+      if (scrObj.Img.length > 0) {
         tmpimg = scrObj.Img.split(",");
-      }
-      else {
+      } else {
         tmpimg = [""];
       }
       $(this)
@@ -44,13 +43,13 @@ function displayScreens(listScrID, startID, scrArr) {
         .first()
         .text(scrObj.Desc);
       $(this)
-      .find("h5.modal-title")
-      .first()
-      .text(scrObj.ScreenName);
+        .find("h5.modal-title")
+        .first()
+        .text(scrObj.ScreenName);
       $(this)
-      .find("img.Mimg")
-      .first()
-      .attr("src", tmpimg[0]);
+        .find("img.Mimg")
+        .first()
+        .attr("src", tmpimg[0]);
       //console.log("NextScr Len:" + scrObj.nextScr.length);
       footerObj = $(this)
         .children("div.card-footer")
@@ -64,13 +63,12 @@ function displayScreens(listScrID, startID, scrArr) {
       newHTML +=
         '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
       tmparr2 = [];
-      if(scrObj.NextScr) {
+      if (scrObj.NextScr) {
         tmparr2 = scrObj.NextScr.split(",");
-      }
-      else {
+      } else {
         tmparr2 = [""];
       }
-      
+
       if (tmparr2.length > 1) {
         //console.log("inside scrObj.nextScr.length")
         //nextArr = scrObj.nextScr
@@ -89,7 +87,9 @@ function displayScreens(listScrID, startID, scrArr) {
             it +
             ')">(' +
             it +
-            ")" + tmpsObj.ScreenName + "</a>";
+            ")" +
+            tmpsObj.ScreenName +
+            "</a>";
         });
         newHTML += " </div> </div>";
         //console.log(newHTML);
@@ -131,15 +131,12 @@ function getNextScrn(lastScrID, scrArr) {
   if (lastScrID < 0) {
     return lastScr.Id;
   } else {
-    if(lastScr.NextScr){
-      tmparr = lastScr.NextScr.split(","); 
+    if (lastScr.NextScr) {
+      tmparr = lastScr.NextScr.split(",");
       return parseInt(tmparr[0]);
-    }
-    else {
+    } else {
       return null;
     }
-    
-    
   }
 }
 
@@ -271,8 +268,7 @@ $(function() {
     }
     checkG();
   });
-  
-  
+
   $.getJSON("scrn2.json", function(data) {
     //var items = [];
     //scrJSONArr = data.screens;
